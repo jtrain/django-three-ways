@@ -23,7 +23,7 @@ function ShoppingList(props) {
         <tr>
             <td><a href={props.url}>{props.name}</a></td>
             <td>{props.items.length}</td>
-            <td>{props.created_at}</td>
+            <td>{moment(props.created_at).fromNow()}</td>
         </tr>
     );
 }
