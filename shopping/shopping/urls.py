@@ -13,10 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 
+from rest_framework import routers
+
+from lists.views import ListViewSet
+
+api = routers.SimpleRouter()
+api.register('lists', ListViewSet)
 
 urlpatterns = [
     url(r'^$',
@@ -28,4 +34,5 @@ urlpatterns = [
     url(r'^lists/(?P<pk>\d+)/$',
         TemplateView.as_view(template_name="base.html"),
         name='list-detail'),
+    url(r'^api/v1/', include(api.urls, namespace='api')),
 ]
