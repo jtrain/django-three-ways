@@ -23,5 +23,5 @@ from lists.views import (
 urlpatterns = [
     url(r'^$', DashboardView.as_view(), name='dashboard'),
     url(r'^lists/create/$', CreateNewList.as_view(), name='list-create'),
-    url(r'^lists/(?P<id>\d+)/$', DetailList.as_view(), name='list-detail'),
+    url(r'^lists/(?P<pk>\d+)/$', DetailList.as_view(), name='list-detail'),
 ]

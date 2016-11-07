@@ -20,6 +20,8 @@ class DashboardView(PrefetchRelatedMixin, OrderableListMixin, ListView):
 class ItemsInline(InlineFormSet):
     model = Item
     form_class = ItemForm
+    can_delete = False
+    extra=30
 
 
 class CreateNewList(FormValidMessageMixin, CreateWithInlinesView):

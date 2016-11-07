@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls.base import reverse
 
 
 class TimeStampedModel(models.Model):
@@ -17,3 +18,6 @@ class Item(TimeStampedModel):
 
 class List(TimeStampedModel):
     name = models.TextField()
+
+    def get_absolute_url(self):
+        return reverse('list-detail', kwargs={"pk": self.id})

@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+
 {% block content %}
   <table>
     <thead>
       <tr>
         <th>Name</th>
-        <th>Quantity</th>
+        <th>Products</th>
+        <th>Created</th>
       </tr>
     </thead>
     <tbody>
-    {% for li in objects %}
+    {% for lst in object_list %}
       <tr>
-        <td>{{ li.name }}</td>
-        <td>{{ li.quantity }}</td>
+        <td><a href="{{ lst.get_absolute_url }}">{{ lst.name }}</a></td>
+        <td>{{ lst.items.count }}</td>
+        <td>{{ lst.created_at|naturaltime }}</td>
       </tr>
     {% endfor %}
     </tbody>

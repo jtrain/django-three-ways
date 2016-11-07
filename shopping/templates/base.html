@@ -1,12 +1,112 @@
 <html>
   <head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+      * {
+        font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        display: block;
+        color: #08548F;
+      }
+      a:hover {
+        color: #2B6DA2;
+      }
+      h1 {
+        font-weight: normal;
+        margin-bottom: 20px;
+      }
+      body {
+        background-color: #fafafa;
+      }
+      header {
+        border-bottom: 1px solid #ccc;
+      }
+      nav ul {
+        padding: 0;
+        margin: 0 auto;
+        list-style-type: none;
+        overflow: hidden;
+        max-width: 800px;
+      }
+      nav li {
+        float: left;
+      }
+      nav li a {
+        padding: 10px;
+        color: #222;
+      }
+      nav li a:hover {
+        background-color: #fffffe;
+      }
+      section {
+        max-width: 800px;
+        margin: 20 auto;
+        background-color: #fffffe;
+        box-sizing: border-box;
+        padding: 10px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      table tbody:before {
+        content: '';
+        display: block;
+        height: 15px;
+      }
+
+      table thead {
+        border-bottom: 1px solid #ccc;
+      }
+
+      table th, table td {
+        font-weight: normal;
+        text-align: right;
+        white-space: nowrap;
+        padding-right: 20px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+      }
+
+      table th:last-of-type, table td:last-of-type {
+        padding-right: 0px;
+      }
+
+      table th:first-of-type, table td:first-of-type {
+        text-align: left;
+        width: 100%;
+      }
+
+      table tbody tr:hover {
+        background-color: #fafafe;
+      }
+
+    </style>
   </head>
   <body>
     {% block header %}
-      <a href="{% url "list-create" %}">Create List</a>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="{% url "dashboard" %}">Home</a></li>
+          <li><a href="{% url "list-create" %}">Create List</a></li>
+        </ul>
+      </nav>
+    </header>
     {% endblock header %}
 
+    <section>
     {% block content %}
     {% endblock content %}
+    </section>
   </body>
 </html>
