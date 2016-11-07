@@ -2,3 +2,4 @@ Django==1.10.3
 django-braces
 django-extra-views
 django-crispy-forms
+django-pjax

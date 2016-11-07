@@ -1,0 +1,21 @@
+{% extends "pjax.html" %}
+
+{% block content %}
+  <h1>{{ object.name }}</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in object.items.all %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
