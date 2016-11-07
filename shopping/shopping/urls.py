@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.generic import TemplateView
 
-from lists.views import (
-    DashboardView, CreateNewList, DetailList
-)
 
 urlpatterns = [
-    url(r'^$', DashboardView.as_view(), name='dashboard'),
-    url(r'^lists/create/$', CreateNewList.as_view(), name='list-create'),
-    url(r'^lists/(?P<pk>\d+)/$', DetailList.as_view(), name='list-detail'),
+    url(r'^$',
+        TemplateView.as_view(template_name="base.html"),
+        name='dashboard'),
+    url(r'^lists/create/$',
+        TemplateView.as_view(template_name="base.html"),
+        name='list-create'),
+    url(r'^lists/(?P<pk>\d+)/$',
+        TemplateView.as_view(template_name="base.html"),
+        name='list-detail'),
 ]
