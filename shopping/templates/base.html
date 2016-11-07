@@ -2,6 +2,10 @@
   <head>
   </head>
   <body>
+    {% block header %}
+      <a href="{% url "list-create" %}">Create List</a>
+    {% endblock header %}
+
     {% block content %}
     {% endblock content %}
   </body>

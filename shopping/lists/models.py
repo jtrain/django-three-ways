@@ -11,7 +11,8 @@ class TimeStampedModel(models.Model):
 class Item(TimeStampedModel):
     name = models.TextField()
     quantity = models.PositiveIntegerField()
-    belongs_to = models.ForeignKey('List', on_delete=models.CASCADE)
+    belongs_to = models.ForeignKey('List', on_delete=models.CASCADE,
+                                   related_name='items')
 
 
 class List(TimeStampedModel):

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {{ form|safe }}
+
+  {% for itemform in inlines %}
+    {{ itemform|safe }}
+  {% endfor %}
+{% endblock content %}
