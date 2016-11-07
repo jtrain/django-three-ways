@@ -11,10 +11,14 @@ class ItemSerializer(serializers.ModelSerializer):
 
 class ListSerializer(serializers.ModelSerializer):
     items = ItemSerializer(many=True)
+    url = serializers.SerializerMethodField()
 
     class Meta:
         model = List
-        fields = ('name', 'items')
+        fields = ('name', 'items', 'created_at', 'url')
+
+    def get_url(self, obj):
+        return obj.get_absolute_url()
 
     def create(self, validated_data):
         items = validated_data.pop('items')

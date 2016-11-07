@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
 
@@ -47,7 +48,7 @@
       }
       section {
         max-width: 800px;
-        margin: 20 auto;
+        margin: 20px auto;
         background-color: #fffffe;
         box-sizing: border-box;
         padding: 10px;
@@ -102,12 +103,14 @@
       </nav>
     </header>
 
-    <section id="root">
-    </section>
+    <section id="root"></section>
 
     <script src="https://unpkg.com/react@15/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
     <script type="text/babel">
       {% include "app.jsx" %}
     </script>
