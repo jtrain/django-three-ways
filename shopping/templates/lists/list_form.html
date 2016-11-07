@@ -8,6 +8,7 @@
     <legend>Shopping List</legend>
     {{ form|crispy }}
 
+    <div class="formsets">
     {% for formset in inlines %}
       {{ formset.management_form|safe }}
       {% for product in formset %}
@@ -15,6 +16,13 @@
         {{ product|crispy }}
       {% endfor %}
     {% endfor %}
+    </div>
+    <button class="btn btn-default js-add">Add Product</button>
     <button type="submit" class="btn btn-default">Create List</button>
   </form>
+  <script id="empty-product" type="text/html">
+    <legend>Product __new__</legend>
+    {{ inlines.0.empty_form|crispy }}
+  </script>
+
 {% endblock content %}

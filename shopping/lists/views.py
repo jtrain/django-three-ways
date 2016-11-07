@@ -23,7 +23,7 @@ class ItemsInline(InlineFormSet):
     model = Item
     form_class = ItemForm
     can_delete = False
-    extra=30
+    extra = 1
 
 
 class CreateNewList(FormValidMessageMixin, CreateWithInlinesView):
