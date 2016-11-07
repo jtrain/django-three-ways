@@ -16,6 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from lists.views import (
+    DashboardView, CreateNewList, DetailList
+)
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', DashboardView.as_view(), name='dashboard'),
+    url(r'^lists/create/$', CreateNewList.as_view(), name='list-create'),
+    url(r'^lists/(?P<id>\d+)/$', DetailList.as_view(), name='list-detail'),
 ]
