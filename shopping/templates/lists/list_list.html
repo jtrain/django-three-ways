@@ -11,9 +11,9 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Products</th>
-        <th>Created</th>
+        <th><a href="{% url 'dashboard' %}?order_by=lower_name">Name</a></th>
+        <th><a href="{% url 'dashboard' %}?order_by=items_count&ordering=desc">Products</a></th>
+        <th><a href="{% url 'dashboard' %}?order_by=created_at&ordering=desc">Created</a></th>
       </tr>
     </thead>
     <tbody>

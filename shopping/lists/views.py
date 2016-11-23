@@ -1,3 +1,5 @@
+from django.db.models import Count
+from django.db.models.functions import Lower
 from django.utils.translation import ugettext as _
 from django.views.generic import ListView, CreateView, DetailView
 
@@ -16,9 +18,16 @@ class DashboardView(SearchableListMixin, PrefetchRelatedMixin,
                     OrderableListMixin, ListView):
     model = List
     prefetch_related = ['items']
-    orderable_columns = ('created_at', 'name', 'quantity')
+    orderable_columns = ('created_at', 'lower_name', 'items_count')
     orderable_columns_default = '-created_at'
     search_fields = ['name', 'items__name']
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.annotate(
+            lower_name=Lower('name'),
+            items_count=Count('items')
+        )
 
 
 class ItemsInline(InlineFormSet):
