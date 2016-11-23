@@ -31,9 +31,9 @@ class AllLists extends React.Component {
             <table>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Products</th>
-                    <th>Created</th>
+                    <th><a href="/?ordering=lower_name">Name</a></th>
+                    <th><a href="/?ordering=-item_count">Products</a></th>
+                    <th><a href="/?ordering=-created_at">Created</a></th>
                   </tr>
                 </thead>
                 <tbody>{lis}</tbody>
