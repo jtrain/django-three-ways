@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext as _
 
+from rest_framework import filters
 from rest_framework import viewsets
 from rest_framework import mixins
 
@@ -10,3 +11,5 @@ from lists.serializers import ListSerializer, ItemSerializer
 class ListViewSet(mixins.CreateModelMixin, viewsets.ReadOnlyModelViewSet):
     queryset = List.objects.all()
     serializer_class = ListSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'items__name')

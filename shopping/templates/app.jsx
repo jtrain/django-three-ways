@@ -1,21 +1,46 @@
 // our list of lists.
 //
 
-function AllLists(props) {
-    const lists = props.lists;
-    const lis = lists.map(ShoppingList);
-    return (
-        <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Products</th>
-                <th>Created</th>
-              </tr>
-            </thead>
-            <tbody>{lis}</tbody>
-        </table>
-    );
+class AllLists extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {search: ''}
+    }
+
+
+    render() {
+        const lis = this.props.lists.map(ShoppingList);
+        return (
+          <div>
+            <div className='filters'>
+                <form onSubmit={
+                    (e) => {
+                        e.preventDefault();
+                        this.props.doSearch(this.state.search)
+                    }
+                }>
+                    <input
+                        onChange={
+                            (e) => this.setState({search: e.target.value})
+                        }
+                        value={this.state.search}
+                        placeholder='Search' />
+                </form>
+            </div>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Products</th>
+                    <th>Created</th>
+                  </tr>
+                </thead>
+                <tbody>{lis}</tbody>
+            </table>
+          </div>
+        );
+    }
 }
 
 class ProductForm extends React.Component {
@@ -60,7 +85,6 @@ class CreateListForm extends React.Component {
 
     handleSubmit (event) {
         event.preventDefault();
-        console.log(this.state);
         $.ajax({
             type: "POST",
             url: '/api/v1/lists/',
@@ -146,12 +170,10 @@ function ShoppingList(props) {
 }
 
 window.onpopstate = function (event) {
-    console.log("pop state");
     doRoute(event.target.location.pathname);
 }
 
 window.onload = function (event) {
-    console.log("on load");
     doRoute(event.target.location.pathname);
 }
 
@@ -165,14 +187,18 @@ function doRoute(url, push) {
     if (push === true) {
         history.pushState({}, '', url);
     }
-    let resolved = resolve(url);
-    resolved.route.init(resolved);
+    let a = document.createElement('a');
+    a.href = url;
+    let resolved = resolve(a.pathname);
+    resolved.route.init(resolved, a);
 }
 
-function listsPage(routeMatch) {
-    $.get('/api/v1/lists/', function(data) {
+function listsPage(routeMatch, request) {
+    $.get('/api/v1/lists/' + request.search, function(data) {
         ReactDOM.render(
-            <AllLists lists={data} />,
+            <AllLists lists={data} doSearch={
+                (q) => doRoute('/?search=' + q, true)
+            } />,
             document.getElementById('root')
         )
     });
