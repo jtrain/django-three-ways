@@ -6,17 +6,21 @@ from django.views.generic import (
 from braces.views import (
     OrderableListMixin, FormValidMessageMixin, PrefetchRelatedMixin
 )
-from extra_views import InlineFormSet, CreateWithInlinesView
+from extra_views import (
+    InlineFormSet, CreateWithInlinesView, SearchableListMixin
+)
 
 from lists.forms import ItemForm, ListForm
 from lists.models import List, Item
 
 
-class DashboardView(PrefetchRelatedMixin, OrderableListMixin, ListView):
+class DashboardView(SearchableListMixin, PrefetchRelatedMixin,
+                    OrderableListMixin, ListView):
     model = List
     prefetch_related = ['items']
     orderable_columns = ('created_at', 'name', 'quantity')
     orderable_columns_default = '-created_at'
+    search_fields = ['name', 'items__name']
 
 
 class ItemsInline(InlineFormSet):
