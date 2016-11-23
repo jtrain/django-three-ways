@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from djpjax import pjax
+from djpjax import pjax, pjaxtend
 
 from lists.views import (
     DashboardView, CreateNewList, DetailList
@@ -24,12 +24,12 @@ from lists.views import (
 
 urlpatterns = [
     url(r'^$',
-        pjax()(DashboardView.as_view()),
+        pjaxtend()(pjax()(DashboardView.as_view())),
         name='dashboard'),
     url(r'^lists/create/$',
-        pjax(follow_redirects=True)(CreateNewList.as_view()),
+        pjaxtend()(pjax(follow_redirects=True)(CreateNewList.as_view())),
         name='list-create'),
     url(r'^lists/(?P<pk>\d+)/$',
-        pjax()(DetailList.as_view()),
+        pjaxtend()(pjax()(DetailList.as_view())),
         name='list-detail'),
 ]
