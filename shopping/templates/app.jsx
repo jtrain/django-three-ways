@@ -170,11 +170,11 @@ function ShoppingList(props) {
 }
 
 window.onpopstate = function (event) {
-    doRoute(event.target.location.pathname);
+    doRoute(event.target.location.pathname + event.target.location.search);
 }
 
 window.onload = function (event) {
-    doRoute(event.target.location.pathname);
+    doRoute(event.target.location.pathname + event.target.location.search);
 }
 
 $(document).on('click', 'a', function(event) {
