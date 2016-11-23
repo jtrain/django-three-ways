@@ -3,6 +3,11 @@
 {% load humanize %}
 
 {% block content %}
+  <div class="filters">
+    <form method="GET" action="{% url 'dashboard' %}">
+      <input class="search" type="text" name="q" value="{{ request.GET.q }}" placeholder="Search" />
+    </form>
+  </div>
   <table>
     <thead>
       <tr>
